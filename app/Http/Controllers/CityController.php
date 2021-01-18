@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\City;
 use App\Http\Resources\CityResource;
 use App\Http\Requests\CityRequest;
-use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 
 class CityController extends Controller
@@ -77,7 +76,7 @@ class CityController extends Controller
     /**
      * Delete a city by ID
      * 
-     * @return JsonResponse|Exception
+     * @return Response|Exception
      */
     public function destroy($cityID) {
         try {
@@ -86,6 +85,6 @@ class CityController extends Controller
             return response($e, 500);
         }
 
-        return ["message" => "city has been deleted"];
+        return response(["message" => "city has been deleted"]);
     }
 }

@@ -9,7 +9,9 @@ class GasStation extends Model
 {
     use HasFactory;
 
+    protected $table = 'gas_station';
+
     public function cities() {
-        return $this->belongsTo('\App\Models\City', 'city_id')
+        return $this->belongsTo('\App\Models\City', 'city_id');
     }
 }

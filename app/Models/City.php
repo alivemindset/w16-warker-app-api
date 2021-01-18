@@ -9,6 +9,9 @@ class City extends Model
 {
     use HasFactory;
 
+    protected $table = 'city';
+    protected $fillable = ['city_name', 'latitude', 'longitude'];
+
     public function gasStations() {
         return $this->hasMany('\App\Models\GasStation', 'city_id');
     }

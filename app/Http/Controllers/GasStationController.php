@@ -71,7 +71,7 @@ class GasStationController extends Controller
         try {
             $updatedGasStationRequest = $request->validated();
             if(array_key_exists('city_id', $updatedGasStationRequest)) {
-                $city = City::find($updatedGasStationRequest->city_id);
+                $city = City::find($updatedGasStationRequest['city_id']);
                 if (!$city) return response([ 'message' => 'city doesnt exist']);
             }
             $gasStation = GasStation::findOrFail($gasStationID);

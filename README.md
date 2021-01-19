@@ -7,55 +7,70 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## Sobre o projeto
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+No mundo pós-apocaliptico em que vivemos, o combustível tem um valor inestimável. Gangues bárbaras lutam até a morte pelo controle desse valioso recurso e a W16 desenvolveu o aplicativo WARKER, que é a última esperança da humanidade em trazer um pouco de paz e ordem à esse mundo devastado. Esse aplicativo consome esta API internacionalizada em Laravel que disponibiliza para o APP os postos de gasolina das diversas cidades, sua localização e o nível dos seus reservatórios.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Instalação
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Para rodar o projeto localmente, precisamos fazer algumas configurações:
 
-## Learning Laravel
+- Clone o projeto em seu computador
+- Instale todas as dependências com o comando abaixo no terminal
+```
+composer install
+```
+- Renomeie o arquivo .env.example para .env e configure o acesso ao banco de dados.
+- Vamos rodar as migrations para criar as tabelas necessárias no db, utilize o comando abaixo.
+```
+php artisan migrate:fresh
+```
+- Hora de popular o banco de dados:
+```
+php artisan db:seed
+```
+- Agora é só rodar o projeto e ter a vida salva com a API indicando os locais com gasolina.
+```
+php artisan serve
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Autenticação
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+O aplicativo chegou na mão de muitas pessoas e todo mundo sabia aonde tinha gasolina, para evitar que todos tenham acesso, nós da W16 criamos autenticação ultra secreta para utilizar a nossa API.
 
-## Laravel Sponsors
+- Ao rodar o comando para popular o banco de dados, é criado um usuário para poder acessar:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+| email            | password |
+| -----            | -------- |
+| marcopoc@w16.com | 12345678 |
 
-### Premium Partners
+- Rotas para cadastrar um novo usuário e para fazer login.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/)**
-- **[OP.GG](https://op.gg)**
+| Rota            | parâmetros |
+| -----           | --------   |
+| /api/register   | name, email, password   |
+| /api/login      | email, password   |
 
-## Contributing
+Para utilizar as outras rotas, é necessário enviar o token de login através do header com Bearer Token.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Insomnia
 
-## Code of Conduct
+Para facilitar a integração, os endpoints foram exportados do Insomnia para o seguinte arquivo:
+- Insomnia_2021-01-19.json
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+É importante criar também um environment com o seguinte JSON:
+```
+{
+  "AUTH_TOKEN": "<INSERIR_TOKEN_DE_LOGIN>"
+}
+```
 
-## Security Vulnerabilities
+## Agradecimentos
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Queria agradecer a toda a equipe W16 que ficou determinada em mudar o mundo para melhor, trazendo a paz para as pessoas.
+O trabalho durou cerca de 10 horas, utilizando recursos profissionais do framework Laravel. 
+Foi tranquilo fazer e estou feliz em poder fazer parte dessa história!
+Poderiamos melhorar criando uma tabela unificada de coordenadas e apenas relacionar por ID, adicionem no backlog para próxima atualização.
 
 ## License
 
